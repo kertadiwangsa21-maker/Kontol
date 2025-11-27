@@ -9,58 +9,61 @@ import type {
   StreamServer,
 } from "@shared/schema";
 
-const BASE_URL = "https://www.sankavollerei.com";
+const API_BASE = "/api/anime";
 
 export const api = {
   getHome: async (): Promise<AnimeHome> => {
-    return fetcher<AnimeHome>(`${BASE_URL}/anime/home`);
+    return fetcher<AnimeHome>(`${API_BASE}/home`);
   },
 
   getSchedule: async (): Promise<any> => {
-    return fetcher(`${BASE_URL}/anime/schedule`);
+    return fetcher(`${API_BASE}/schedule`);
   },
 
   getAnimeDetail: async (slug: string): Promise<AnimeDetail> => {
-    return fetcher<AnimeDetail>(`${BASE_URL}/anime/anime/${slug}`);
+    return fetcher<AnimeDetail>(`${API_BASE}/${slug}`);
   },
 
   getCompleteAnime: async (page: number = 1): Promise<{ animes: AnimeItem[] }> => {
-    return fetcher(`${BASE_URL}/anime/complete-anime/${page}`);
+    return fetcher(`${API_BASE}/complete-anime/${page}`);
   },
 
   getOngoingAnime: async (page: number = 1): Promise<{ animes: AnimeItem[] }> => {
-    return fetcher(`${BASE_URL}/anime/ongoing-anime?page=${page}`);
+    return fetcher(`${API_BASE}/ongoing-anime?page=${page}`);
   },
 
   getGenres: async (): Promise<Genre[]> => {
-    return fetcher<Genre[]>(`${BASE_URL}/anime/genre`);
+    return fetcher<Genre[]>(`${API_BASE}/genre`);
   },
 
   getAnimeByGenre: async (
     slug: string,
     page: number = 1
   ): Promise<{ animes: AnimeItem[] }> => {
-    return fetcher(`${BASE_URL}/anime/genre/${slug}?page=${page}`);
+    return fetcher(`${API_BASE}/genre/${slug}?page=${page}`);
   },
 
   getEpisodeDetail: async (slug: string): Promise<EpisodeDetail> => {
-    return fetcher<EpisodeDetail>(`${BASE_URL}/anime/episode/${slug}`);
+    return fetcher<EpisodeDetail>(`${API_BASE}/episode/${slug}`);
   },
 
   searchAnime: async (keyword: string): Promise<SearchResult[]> => {
-    return fetcher<SearchResult[]>(`${BASE_URL}/anime/search/${keyword}`);
+    return fetcher<SearchResult[]>(`${API_BASE}/search/${keyword}`);
   },
 
   getBatch: async (slug: string): Promise<any> => {
-    return fetcher(`${BASE_URL}/anime/batch/${slug}`);
+    return fetcher(`${API_BASE}/batch/${slug}`);
   },
 
   getServerUrl: async (serverId: string): Promise<{ url: string }> => {
-    return fetcher<{ url: string }>(`${BASE_URL}/anime/server/${serverId}`);
+    return fetcher<{ url: string }>(`${API_BASE}/server`, {
+      method: "POST",
+      body: JSON.stringify({ serverId }),
+    });
   },
 
   getAllAnime: async (): Promise<AnimeItem[]> => {
-    return fetcher<AnimeItem[]>(`${BASE_URL}/anime/unlimited`);
+    return fetcher<AnimeItem[]>(`${API_BASE}/unlimited`);
   },
 };
 

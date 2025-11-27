@@ -1,7 +1,13 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { proxyAnimeApi, setCacheHeaders, validatePage } from "../utils";
+import { proxyAnimeApi, setCacheHeaders, setCorsHeaders, validatePage } from "../utils";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
+  setCorsHeaders(res);
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   try {
     const page = validatePage(req.query.page);
     const data = await proxyAnimeApi(`/anime/ongoing-anime?page=${page}`);

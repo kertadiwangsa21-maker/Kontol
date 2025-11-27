@@ -2,6 +2,12 @@ import type { VercelRequest, VercelResponse } from "@vercel/node";
 
 const SANKAVOLLEREI_BASE_URL = "https://www.sankavollerei.com";
 
+export function setCorsHeaders(res: VercelResponse) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+}
+
 export function setCacheHeaders(res: VercelResponse, maxAge: number) {
   res.setHeader("Cache-Control", `public, max-age=${maxAge}`);
   res.setHeader("Expires", new Date(Date.now() + maxAge * 1000).toUTCString());
