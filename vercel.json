@@ -2,5 +2,14 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "vite build",
   "installCommand": "npm install",
-  "outputDirectory": "dist/public"
+  "outputDirectory": "dist/public",
+  "functions": {
+    "api/proxy.ts": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/anime/(.*)", "destination": "/api/proxy?path=$1" },
+    { "source": "/((?!api).*)", "destination": "/index.html" }
+  ]
 }
