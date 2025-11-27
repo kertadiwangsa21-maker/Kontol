@@ -383,20 +383,6 @@ export default function AnimeDetail() {
                   Tonton Sekarang
                 </motion.button>
               </Link>
-              <motion.button
-                onClick={handleBookmark}
-                className={`px-6 py-3.5 border-2 font-bold rounded-lg transition-all flex items-center gap-2 ${
-                  isBookmarked
-                    ? "border-amber-500 bg-amber-500/10 text-amber-500"
-                    : "border-amber-500 text-amber-500 hover:bg-amber-500/10"
-                }`}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-                data-testid="button-bookmark"
-              >
-                {isBookmarked ? <Check className="w-5 h-5" /> : <Bookmark className="w-5 h-5" />}
-                {isBookmarked ? "Tersimpan" : "Simpan"}
-              </motion.button>
               <div className="relative" ref={shareMenuRef}>
                 <motion.button
                   onClick={handleShareClick}
