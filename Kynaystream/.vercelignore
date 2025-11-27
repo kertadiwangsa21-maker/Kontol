@@ -1,0 +1,10 @@
+.replit
+.git
+.cache
+.upm
+design_guidelines.md
+replit.md
+git-recovery.sh
+attached_assets/
+*.log
+npm-debug.log*
