@@ -3,7 +3,6 @@ import { useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AnimeCard } from "@/components/home/AnimeCard";
 import { SectionTitle } from "@/components/home/SectionTitle";
-import AnimeHeroSlider from "@/components/home/AnimeHeroSlider";
 import type { AnimeItem } from "@shared/schema";
 
 interface ScheduleAnimeData {
@@ -56,11 +55,8 @@ export default function Schedule() {
   const selectedDayData = sortedSchedule[selectedDay];
   const animeList = selectedDayData?.anime_list || [];
 
-  const topAnimes = sortedSchedule.slice(0, 3).flatMap(day => day.anime_list.slice(0, 1)).map(transformScheduleAnime).slice(0, 3);
-
   return (
     <div className="min-h-screen">
-      <AnimeHeroSlider slides={topAnimes} isLoading={isLoading} />
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <section>
           <SectionTitle>Jadwal Tayang</SectionTitle>
